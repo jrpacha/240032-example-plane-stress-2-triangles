@@ -1,0 +1,274 @@
+% Handouts
+%
+% Tema 3. Sistemes Lineals. Mètodes Iteratius 
+%
+
+\documentclass[slidetop,compress,10pt]{beamer}
+
+\mode<presentation>{\usetheme{SimplePlus}}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{itemize item}[triangle]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{frametitle continuation}{%
+\usebeamerfont{frametitle}
+(\insertcontinuationcountroman)
+}
+
+%\apptocmd{\frame}{}{\justifying}{} % Allow optional arguments after frame.
+
+\usepackage{mathptmx}
+\usepackage[scaled=0.9]{helvet}
+\usepackage{courier}
+
+\usepackage{ragged2e}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{wrapfig}
+\usepackage{cancel}
+\usepackage{fontawesome}
+\usepackage{caption}
+\usepackage{color}
+
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+\selectlanguage{catalan}
+\uselanguage{Catalan}
+\languagepath{Catalan}
+
+\usepackage{ifpdf}
+\usepackage{numprint}
+\usepackage{oldstyle}
+\graphicspath{ {_figures/} }
+\DeclareGraphicsExtensions{.png}
+\usepackage{subfigure}
+
+\usepackage{yhmath}
+
+\hypersetup{
+  pdfauthor   = {J.R. Pacha},
+  pdftitle    = {FEM: Weak formulation},
+  pdfsubject  = {FEM},
+  pdfpagemode = {FullScreen},
+  pdfstartview = {},
+  colorlinks  = {true},
+%  bookmarks   = {true},
+%  pagebackref = {true},
+  bookmarksnumbered = {true},
+  hyperindex  = {true}
+}
+% \pdfadjustspacing=1
+
+\usepackage{url}
+%\setcounter{section}{3}
+
+% THEOREMS -------------------------------------------------------
+\newtheorem{thm}{Teorema}%[section]
+\newtheorem{cor}[thm]{Coro\lgem ari}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}{Proposici\'{o}}%[thm]{Proposició}
+\theoremstyle{definition}
+\newtheorem{defn}{Definició}%[thm]{Definici\'{o}}
+\theoremstyle{remark}
+%\newtheorem{rem}[thm]{Remarca}
+\newtheorem{rem}{Remarca}
+%\newtheorem{ex}[thm]{Exemple}
+\newtheorem{ex}{Exemple}
+%\numberwithin{equation}{section}
+\newtheorem{exc}{Exercici}
+\newtheorem{demo}{Demostraci{\'{o}}} 
+\newtheorem*{demo*}{Demostraci{\'{o}}} 
+
+% Algorismes -----------------------------------------------------
+\usepackage[noline,plain]{algorithm2e}
+\setlength{\AlCapSkip}{0.7em}
+
+\usepackage{hyperref}
+
+% MATH -----------------------------------------------------------
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\bs}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\M}{\ensuremath{\mathbb{M}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\K}{\ensuremath{\mathbb{K}}}
+\newcommand{\eps}{\ensuremath{\epsilon}}
+\newcommand{\veps}{\ensuremath{\varepsilon}}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\BX}{\mathbf{B}(X)}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\Or}{\mathcal{O}}
+\newcommand{\Id}[1]{Id_{#1}}
+\newcommand{\argcosh}{\ensuremath{\mathrm{argcosh}}\,}
+\newcommand{\argsinh}{\ensuremath{\mathrm{argsinh}}\,}
+\newcommand{\argtanh}{\ensuremath{\mathrm{argtanh}}\,}
+\newcommand{\argcoth}{\ensuremath{\mathrm{argcoth}}\,}
+\newcommand{\rme}{\mathrm{e}}
+\newcommand{\rmi}{\mathrm{i}}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\re}{\mathrm{Re\:}}
+\newcommand{\im}{\mathrm{Im\:}}
+\newcommand{\wt}[1]{\ensuremath{\widetilde{#1}}}
+\DeclareMathOperator{\Hessian}{Hess}
+\DeclareMathOperator*{\maxc}{\text{\rm m\`{a}x}}
+\DeclareMathOperator*{\limc}{\text{\rm l\'{\i}m}}
+\DeclareMathOperator*{\minc}{\text{\rm m\'{\i}n}}
+\newcommand{\interior}[1]{\ensuremath{\mathring{#1}}}
+\DeclareMathOperator{\ext}{Ext}
+\DeclareMathOperator{\fr}{Fr}
+\DeclareMathOperator{\Dom}{\mathcal{D}}
+\newcommand{\dom}[1]{\Dom\left(#1\right)}
+\DeclareMathOperator{\Rang}{\mathcal{R}}
+\newcommand{\rang}[1]{\Rang\left(#1\right)}
+\newcommand{\Mat}[2]{\ensuremath M_{#1}(#2)}
+\newcommand{\bracket}[2]{\ensuremath\left\langle #1, #2\right\rangle}
+\newcommand{\verteq}{\rotatebox{90}{$\scriptstyle \,=$}}
+\newcommand{\eqover}[1]{\substack{\verteq \\ \scriptstyle #1}}
+\newcommand{\equnder}[1]{\substack{\scriptstyle #1 \\ \verteq}}
+
+
+% ----------------------------------------------------------------
+\newcommand{\gl}{\guillemotleft}
+\newcommand{\gr}{\guillemotright}
+\newcommand{\sst}{\ensuremath{\scriptstyle}}
+\newcommand{\npos}[2]{\ensuremath{\oldstyle{\numprint[#1]{#2}}}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} %{$\scriptstyle (*)$}
+
+% Counters -------------------------------------------------------
+\newcounter{saveenum}
+\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{enumerate item}{\arabic{enumi})}%
+\setbeamertemplate{enumerate label}{\roman{enumi})}
+\setbeamerfont{caption}{size=\scriptsize}
+
+\newdimen\oldparindent    
+\oldparindent=\parindent  %Keep the original parindent
+
+\title[]%
+{{\Large Mètodes Numèrics (240032)} \\
+ \large Plane elasticity. Weak Formulation}
+
+\date{\today}
+
+
+%%----------------------------------------------------------------------------
+\begin{document}
+\frame{\titlepage}
+\frame{\tableofcontents}
+
+%%----------------------------------------------------------------------------
+\begin{frame}[t,allowframebreaks]{}\justifying
+
+  \begin{defn}[Model equation for plane elasticity
+    problems~\cite{Reddy2006}]\label{defn:model-equation}%
+    \justifying
+    For the plane elasticity problems, the
+    the normal stress in the $x$ direction, $\sigma_{xx} = \sigma_{xx}(x,y)$, the
+    normal stress in the $y$ direction, $\sigma_{yy} = \sigma_{yy}(x,y)$, and the shear stress,
+    $\sigma_{xy} = \sigma_{xy}(x,y)$, satisfy the BVP given by the two coupled PDE system:
+
+    \begin{displaymath}
+      \left.
+    \begin{aligned}
+      \frac{\partial \sigma_{xx}}{\partial x} + \frac{\partial
+      \sigma_{xy}}{\partial y} + f_{x}(x,y) &= 0\\
+      \frac{\partial \sigma_{xy}}{\partial x} + \frac{\partial
+    \sigma_{yy}}{\partial y} + f_{y}(x,y) &= 0
+    \end{aligned}
+  \right\}
+    \end{displaymath}
+
+    $(x,y)\in\Omega\subseteq\R^{2}$. Being, 
+    \begin{description}
+      \item[$f_{x}$:] the component of the body force vector (per unit
+                      volume) along the $x$ direction.
+      \item[$f_{y}$:] the component of the body force vector (per unit 
+                      volume) along the $y$ direction.
+      %\item[$\rho$:] The density of the material.
+\end{description}
+    and the B.C.
+
+  \end{defn}
+
+
+
+\end{frame}
+
+%%----------------------------------------------------------------------------
+
+
+
+%%----------------------------------------------------------------------------
+\begin{frame}[t]{}\justifying
+  % Put here the content of the 1st slide
+
+\end{frame}
+
+%%----------------------------------------------------------------------------
+\begin{frame}[t]{}\justifying
+  % Put here the content of the 2nd slide
+
+\end{frame}
+
+%%----------------------------------------------------------------------------
+\begin{frame}[t]\justifying
+  % Put here the content of the 3rd slide
+\end{frame}
+
+%%-----------------------------------------------------------------------------
+\begin{frame}[t]\justifying
+  % Put here the content of the 4th slide
+
+\end{frame}
+
+%%-----------------------------------------------------------------------------
+\begin{frame}[t]{Example: an algorithm with caption}
+%% This is needed if you want to add comments in
+%% your algorithm with \Comment
+\DontPrintSemicolon
+
+\SetKwComment{Comment}{\# }{}
+\LinesNumbered
+\centering
+\scalebox{.8}{%
+\begin{algorithm}[H]
+  \captionof{algocf}{An algorithm with caption}\label{alg:two}
+\KwData{$n \geq 0$}
+\KwResult{$y = x^n$}
+$y \gets 1$\;
+$X \gets x$\;
+$N \gets n$\;
+\While{$N \neq 0$}{
+  \eIf{$N$ is even}{
+    $X \gets X \times X$\;
+    $N \gets \frac{N}{2} $ \Comment*[r]{This is a comment}
+  }{\If{$N$ is odd}{
+      $y \gets y \times X$\;
+      $N \gets N - 1$\;
+    }
+  }
+}
+\end{algorithm}
+}
+\end{frame}
+
+%%----------------------------------------------------------------------------
+\begin{frame}[allowframebreaks,t]%\justifying
+  \frametitle{Referències}
+\bibliographystyle{alpha}
+\bibliography{biblio.bib}
+\nocite{*}
+\end{frame}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
