@@ -32,10 +32,10 @@
 \usepackage{color}
 
 \usepackage[utf8]{inputenc}
-\usepackage[catalan]{babel}
-\selectlanguage{catalan}
-\uselanguage{Catalan}
-\languagepath{Catalan}
+\usepackage[english]{babel}
+\selectlanguage{english}
+\uselanguage{English}
+\languagepath{English}
 
 \usepackage{ifpdf}
 \usepackage{numprint}
@@ -65,20 +65,20 @@
 
 % THEOREMS -------------------------------------------------------
 \newtheorem{thm}{Teorema}%[section]
-\newtheorem{cor}[thm]{Coro\lgem ari}
+\newtheorem{cor}[thm]{Corollary}
 \newtheorem{lem}[thm]{Lemma}
-\newtheorem{prop}{Proposici\'{o}}%[thm]{Proposició}
+\newtheorem{prop}{Proposition}%[thm]{Proposició}
 \theoremstyle{definition}
-\newtheorem{defn}{Definició}%[thm]{Definici\'{o}}
+\newtheorem{defn}{Definiton}%[thm]{Definici\'{o}}
 \theoremstyle{remark}
 %\newtheorem{rem}[thm]{Remarca}
-\newtheorem{rem}{Remarca}
+\newtheorem{rem}{Remark}
 %\newtheorem{ex}[thm]{Exemple}
-\newtheorem{ex}{Exemple}
+\newtheorem{ex}{Example}
 %\numberwithin{equation}{section}
-\newtheorem{exc}{Exercici}
-\newtheorem{demo}{Demostraci{\'{o}}} 
-\newtheorem*{demo*}{Demostraci{\'{o}}} 
+\newtheorem{exc}{Exercise}
+\newtheorem{demo}{Proof} 
+\newtheorem*{demo*}{Proof} 
 
 % Algorismes -----------------------------------------------------
 \usepackage[noline,plain]{algorithm2e}
@@ -131,7 +131,6 @@
 \newcommand{\eqover}[1]{\substack{\verteq \\ \scriptstyle #1}}
 \newcommand{\equnder}[1]{\substack{\scriptstyle #1 \\ \verteq}}
 
-
 % ----------------------------------------------------------------
 \newcommand{\gl}{\guillemotleft}
 \newcommand{\gr}{\guillemotright}
@@ -156,7 +155,6 @@
 
 \date{\today}
 
-
 %%----------------------------------------------------------------------------
 \begin{document}
 \frame{\titlepage}
@@ -168,34 +166,68 @@
   \begin{defn}[Model equation for plane elasticity
     problems~\cite{Reddy2006}]\label{defn:model-equation}%
     \justifying
-    For the plane elasticity problems, the
-    the normal stress in the $x$ direction, $\sigma_{xx} = \sigma_{xx}(x,y)$, the
-    normal stress in the $y$ direction, $\sigma_{yy} = \sigma_{yy}(x,y)$, and the shear stress,
-    $\sigma_{xy} = \sigma_{xy}(x,y)$, satisfy the BVP given by the two coupled PDE system:
 
-    \begin{displaymath}
+    For the plane elasticity problems, the the normal stress in the $x$
+    direction, $\sigma_{xx} = \sigma_{xx}(x,y)$, the normal stress in the
+    $y$ direction, $\sigma_{yy} = \sigma_{yy}(x,y)$, and the shear stress,
+    $\sigma_{xy} = \sigma_{xy}(x,y)$, satisfy the BVP given by the two
+    coupled system of PDE,
+
+    \begin{equation}
       \left.
-    \begin{aligned}
-      \frac{\partial \sigma_{xx}}{\partial x} + \frac{\partial
-      \sigma_{xy}}{\partial y} + f_{x}(x,y) &= 0\\
-      \frac{\partial \sigma_{xy}}{\partial x} + \frac{\partial
-    \sigma_{yy}}{\partial y} + f_{y}(x,y) &= 0
-    \end{aligned}
-  \right\}
-    \end{displaymath}
+      \begin{aligned}
+         \frac{\partial \sigma_{xx}}{\partial x} + \frac{\partial
+         \sigma_{xy}}{\partial y} + f_{x}(x,y) &= 0\\
+         \frac{\partial \sigma_{xy}}{\partial x} + \frac{\partial
+        \sigma_{yy}}{\partial y} + f_{y}(x,y) &= 0
+      \end{aligned}
+      \right\}\quad\text{on $\Omega\subset R^{2}$.}
+      \label{eq:BVP-EDP}
+    \end{equation}
+    Being, 
 
-    $(x,y)\in\Omega\subseteq\R^{2}$. Being, 
     \begin{description}
       \item[$f_{x}$:] the component of the body force vector (per unit
                       volume) along the $x$ direction.
       \item[$f_{y}$:] the component of the body force vector (per unit 
                       volume) along the $y$ direction.
       %\item[$\rho$:] The density of the material.
-\end{description}
-    and the B.C.
+    \end{description}
 
+    the \emph{natural} B.C. 
+    \begin{equation}
+      \left.
+      \begin{aligned}
+        t_{x}\equiv \sigma_{xx} n_{x} + \sigma_{xy} n_{y} = \hat{t}_{x}\\
+        t_{y}\equiv \sigma_{xy} n_{x} + \sigma_{yy} n_{y} = \hat{t}_{y}
+      \end{aligned}
+      \right\}\quad \text{on $\Gamma_{\sigma}$,}
+     \label{eq:BVP-NBC}
+    \end{equation}
   \end{defn}
 
+  \begin{block}{}\justifying
+  and the \emph{essential} B.C.
+
+  \begin{equation}
+    u = \hat{u},\quad v = \hat{v}\quad\text{on $\Gamma_{u}$}
+    \label{eq:BVP-EBC}
+  \end{equation}
+
+  where $n_{x}$, $n_{y}$ denote the components (or the direction cosines)
+  of the unit normal vector, $\mathbf{n}^{\top} = (n_{x}, n_{y})$, on the
+  boundary of $\Omega$, $\Gamma = \partial{\Omega}$; $\Gamma_{\sigma}$ and
+  $\Gamma_{u}$ are two disjoint pieces of $\Gamma$; $\hat{t}_{x}$ and
+  $\hat{t}_{y}$ denote the components of the specified traction vector,
+  $\mathbf{t}^{\top} = (t_{x}, t_{y})$; $\hat{u}$, and $\hat{v}$ are the
+  components of the specified displacement vector $\mathbf{w}^{\top} =
+  (u,v)$. 
+
+  \end{block}
+
+
+
+%  \end{defn}
 
 
 \end{frame}
@@ -260,7 +292,7 @@ $N \gets n$\;
 
 %%----------------------------------------------------------------------------
 \begin{frame}[allowframebreaks,t]%\justifying
-  \frametitle{Referències}
+  \frametitle{References}
 \bibliographystyle{alpha}
 \bibliography{biblio.bib}
 \nocite{*}
