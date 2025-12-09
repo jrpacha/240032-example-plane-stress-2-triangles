@@ -270,8 +270,58 @@
 
 %%----------------------------------------------------------------------------
 \begin{frame}[t]{Stress-Strain equation}\justifying
-  On the other hand, the stress tensor is related by the strain tensor
-  through the Stress-Strain equation
+  On the other hand, the stress tensor, $\mathbf{\sigma}$, is related by the
+  strain tensor, $\mathbf{\epsilon}$, through the Stress-Strain equation
+  \begin{equation}
+    \begin{pmatrix}
+      \sigma_{xx}\\
+      \sigma_{yy}\\
+      \sigma_{xy} 
+    \end{pmatrix} =
+    \begin{pmatrix}
+      c_{11} & c_{12} & 0\\
+      c_{12} & c_{22} & 0\\
+      0 & 0 & c_{33}
+    \end{pmatrix}
+    \begin{pmatrix}
+      \epsilon_{xx}\\
+      \epsilon_{yy}\\
+      2\epsilon_{xy}
+    \end{pmatrix}\label{eq:stress-strain}
+  \end{equation}
+  or, in matrix form
+  \begin{equation}
+    \mathbf{\sigma} =  C \mathbf{\epsilon},
+    \label{eq:stress-strain-vec}
+  \end{equation}
+  with
+  \begin{equation}
+    \mathbf{\sigma} = \begin{pmatrix}
+      \sigma_{xx}\\
+      \sigma_{yy}\\
+      \sigma_{xy}
+    \end{pmatrix},\qquad
+    C =  \begin{pmatrix}
+      c_{11} & c_{12} & 0\\
+      c_{12} & c_{22} & 0\\
+      0 & 0 & c_{33}
+    \end{pmatrix},\qquad
+    \mathbf{\epsilon} = \begin{pmatrix}
+      \epsilon_{xx}\\
+      \epsilon_{yy}\\
+      2\epsilon_{xy}
+    \end{pmatrix}.
+    \label{eq:sigma-c-epsilon}
+  \end{equation}
+%  The components of the matrix $C$ are given by the formulas
+  \begin{block}{For stress problems}
+    Formulas for $c_{ij}$ for stress problems
+  \end{block}
+  \begin{block}{For strain problems}
+    Formulas fot $c_{ij}$ for strain problems
+  \end{block}
+
+
   % Put here the content of the 2nd slide
 
 \end{frame}
