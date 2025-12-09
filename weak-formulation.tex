@@ -46,6 +46,8 @@
 
 \usepackage{yhmath}
 
+\usepackage[round]{natbib}
+
 \hypersetup{
   pdfauthor   = {J.R. Pacha},
   pdftitle    = {FEM: Weak formulation},
@@ -161,13 +163,11 @@
 \frame{\tableofcontents}
 
 %%----------------------------------------------------------------------------
-\begin{frame}[t,allowframebreaks]{}\justifying
+\begin{frame}[t,allowframebreaks]{Model equation for plane elasticity}%
+  %\begin{defn}[
 
-  \begin{defn}[Model equation for plane elasticity
-    problems~\cite{Reddy2006}]\label{defn:model-equation}%
-    \justifying
-
-    For the plane elasticity problems, the the normal stress in the $x$
+   \citep[In][chap.~11]{Reddy2006}
+    for the plane elasticity problems, the the normal stress in the $x$
     direction, $\sigma_{xx} = \sigma_{xx}(x,y)$, the normal stress in the
     $y$ direction, $\sigma_{yy} = \sigma_{yy}(x,y)$, and the shear stress,
     $\sigma_{xy} = \sigma_{xy}(x,y)$, satisfy the BVP given by the two
@@ -181,18 +181,9 @@
          \frac{\partial \sigma_{xy}}{\partial x} + \frac{\partial
         \sigma_{yy}}{\partial y} + f_{y}(x,y) &= 0
       \end{aligned}
-      \right\}\quad\text{on $\Omega\subset R^{2}$.}
+      \right\}\quad\text{on $\Omega\subset \R^{2}$,}
       \label{eq:BVP-EDP}
     \end{equation}
-    Being, 
-
-    \begin{description}
-      \item[$f_{x}$:] the component of the body force vector (per unit
-                      volume) along the $x$ direction.
-      \item[$f_{y}$:] the component of the body force vector (per unit 
-                      volume) along the $y$ direction.
-      %\item[$\rho$:] The density of the material.
-    \end{description}
 
     the \emph{natural} B.C. 
     \begin{equation}
@@ -204,9 +195,7 @@
       \right\}\quad \text{on $\Gamma_{\sigma}$,}
      \label{eq:BVP-NBC}
     \end{equation}
-  \end{defn}
 
-  \begin{block}{}\justifying
   and the \emph{essential} B.C.
 
   \begin{equation}
@@ -214,33 +203,79 @@
     \label{eq:BVP-EBC}
   \end{equation}
 
-  where $n_{x}$, $n_{y}$ denote the components (or the direction cosines)
-  of the unit normal vector, $\mathbf{n}^{\top} = (n_{x}, n_{y})$, on the
-  boundary of $\Omega$, $\Gamma = \partial{\Omega}$; $\Gamma_{\sigma}$ and
-  $\Gamma_{u}$ are two disjoint pieces of $\Gamma$; $\hat{t}_{x}$ and
-  $\hat{t}_{y}$ denote the components of the specified traction vector,
-  $\mathbf{t}^{\top} = (t_{x}, t_{y})$; $\hat{u}$, and $\hat{v}$ are the
-  components of the specified displacement vector $\mathbf{w}^{\top} =
-  (u,v)$. 
+  where
 
-  \end{block}
+  \begin{description}
 
+    \item[$f_{x}$, $f_{y}$] are the components of the body force vector
+      (per unit volume) along the $x$ and the $y$ direction respectively.
 
+    \item[$n_{x}$, $n_{y}$] denote the components (or the direction
+      cosines) of the unit normal vector on the boundary of $\Gamma$.
 
-%  \end{defn}
+    \item[$\Gamma_{\sigma}$, $\Gamma_{u}$] are two disjoint pieces of
+      $\Gamma$.
 
+    \item[$\hat{t}_{x}$, $\hat{t}_{y}$] denote the components of the
+      specified traction vector.
+
+    \item[$\hat{u}$, $\hat{v}$] are the components of the specified
+      displacement vector.
+
+  \end{description}
+
+  Only one element of each pair, $(u, t_{x})$ and $(v, t_{y})$, may be
+  specified at a boundary point.
 
 \end{frame}
 
 %%----------------------------------------------------------------------------
+\begin{frame}[t]{Relations Strain-displacement}\justifying
 
+   On the one hand the components of the strain tensor 
+   \begin{displaymath}
+     \epsilon_{xx} = \epsilon_{xx}(x,y),\quad
+     \epsilon_{xy} = \epsilon_{xy}(x,y),\quad
+     \epsilon_{yy} = \epsilon_{yy}(x,y),
+   \end{displaymath}
 
+   are given by the components of the displacement field $u = u(x,y)$,
+   $v = v(x,y)$ through the relations 
 
-%%----------------------------------------------------------------------------
-\begin{frame}[t]{}\justifying
-  % Put here the content of the 1st slide
+   \begin{displaymath}
+     \epsilon_{xx} = \frac{\partial u}{\partial x},\quad
+     2\epsilon_{xy} = \frac{\partial u}{\partial y} + \frac{\partial
+     v}{\partial x},\quad
+     \epsilon_{yy} = \frac{\partial v}{\partial y},
+   \end{displaymath}
+
+   or, in vector form,
+
+   \begin{equation}
+     %\renewcommand{\arraystretch}{1.5}
+     \mathbf{\epsilon} \equiv 
+     \begin{pmatrix}
+       \epsilon_{xx}\\
+       \epsilon_{yy}\\
+       2\epsilon_{xy}
+     \end{pmatrix} = 
+     \begin{pmatrix}
+       \frac{\partial u}{\partial{x}}\\[4pt]
+       \frac{\partial v}{\partial{y}}\\[4pt]
+       \frac{\partial u}{\partial y} + \frac{\partial v}{\partial x}
+     \end{pmatrix}
+   \end{equation}
 
 \end{frame}
+
+%%----------------------------------------------------------------------------
+\begin{frame}[t]{Stress-Strain equation}\justifying
+  On the other hand, the stress tensor is related by the strain tensor
+  through the Stress-Strain equation
+  % Put here the content of the 2nd slide
+
+\end{frame}
+
 
 %%----------------------------------------------------------------------------
 \begin{frame}[t]{}\justifying
@@ -292,10 +327,16 @@ $N \gets n$\;
 
 %%----------------------------------------------------------------------------
 \begin{frame}[allowframebreaks,t]%\justifying
+
   \frametitle{References}
-\bibliographystyle{alpha}
+%\bibliographystyle{alpha}
+
+\bibliographystyle{plainnat}
+
 \bibliography{biblio.bib}
-\nocite{*}
+
+%\nocite{*}
+
 \end{frame}
 
 \end{document}
