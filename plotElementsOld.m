@@ -15,7 +15,7 @@ if (size(elem,2) == 3) %Case Triangles
     A = sparse([elem(:,1); elem(:,1); elem(:,2); elem(:,2); elem(:,3); elem(:,3)], ...
     [elem(:,2); elem(:,3); elem(:,1); elem(:,3); elem(:,1); elem(:,2)],1.0);
     A = min(A, 1);
-    gplot(A,nodes)
+    gplot(A,nodes);
     hold on;
     h = title('Triangle Elements Visualizer');
     set(h,'FontSize',11,'FontWeight','bold') 
@@ -41,7 +41,7 @@ else
         [elem(:,4); elem(:,2); elem(:,1); elem(:,3); elem(:,2); elem(:,4); elem(:,3); elem(:,1)], ...
         1.0);
     A = min(A, 1);
-    gplot(A,nodes)
+    gplot(A,nodes);
     hold on;
     h = title('Quadrilateral Elements Visualizer');
     set(h,'FontSize',11,'FontWeight','bold') 
